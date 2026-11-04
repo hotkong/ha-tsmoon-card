@@ -1,5 +1,13 @@
 # HA-TSMOON
 
+> **非官方中文适配 fork**（`hotkong/ha-tsmoon-card`，版本 `0.20.1-zh.1`）
+>
+> 本仓库基于上游 [trollix/ha-tsmoon-card](https://github.com/trollix/ha-tsmoon-card) v0.20，新增 `zh-CN` / `zh-TW` 语言包、语言代码解析与中文可视化编辑器；与上游作者无隶属关系。
+>
+> 原项目 MIT 许可，Copyright (c) 2020 Max Chodorowski；完整第三方声明见 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md)。
+>
+> HACS 自定义仓库安装：`https://github.com/hotkong/ha-tsmoon-card`（类别 Dashboard）；Release 资产为 `tsmoon-card.js`。
+
 Startup setup for new lovelace (Home Assistant) card development
 
 ## What is here?

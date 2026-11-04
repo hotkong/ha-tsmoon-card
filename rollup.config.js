@@ -12,6 +12,15 @@ import replace from '@rollup/plugin-replace';
 
 let targetFileName = pkg.main;
 
+const banner = `/*!
+ * ${pkg.name} v${pkg.version}
+ * Chinese-localization fork of ha-tsmoon-card (https://github.com/trollix/ha-tsmoon-card).
+ * Original code Copyright (c) 2020 Max Chodorowski, MIT License.
+ * Fork: https://github.com/hotkong/ha-tsmoon-card
+ * Bundled dependencies: lit (BSD-3-Clause), dayjs (MIT), suncalc3 (BSD-2-Clause).
+ * See THIRD_PARTY_NOTICES.md for full license texts.
+ */`;
+
 const plugins = [
   cssImports({minify:true}),
   resolve(),
@@ -34,7 +43,8 @@ if (process.env.release) {
   //plugins.push(template())
   plugins.push(
     terser({
-      compress: {}
+      compress: {},
+      format: { comments: /^!/ },
     })
   );
 
@@ -51,6 +61,7 @@ export default {
   output: {
     globals: {
     },
+    banner,
     file: targetFileName,
     format: 'iife',
     name: 'TSMoonCard'
