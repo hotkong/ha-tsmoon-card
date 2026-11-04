@@ -7,7 +7,22 @@
     "invalid_configuration": "Invalid configuration"
   },
   "editor": {
-    "moon_entity": "Moon entity (Optional)"
+    "moon_entity": "Moon entity (Optional)",
+    "title": "Title (optional)",
+    "entity": "Moon entity",
+    "icon_type": "Icon type",
+    "time_format": "Time format",
+    "hemisphere": "Hemisphere",
+    "language": "Language",
+    "language_auto": "Automatic (follow Home Assistant)",
+    "icon_forms": "Forms",
+    "icon_round": "Round",
+    "icon_photo": "Photo",
+    "icon_clear": "Clear",
+    "hemisphere_north": "North",
+    "hemisphere_south": "South",
+    "time_24h": "24-hour",
+    "time_12h": "12-hour"
   },
   "errors": {
     "missing_moon_entity": "moon_entity is missing in configuration",

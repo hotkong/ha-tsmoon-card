@@ -54,7 +54,7 @@ export class TSMoonCard extends LitElement {
     private accessor icon_type: IconType = DEFAULT_ICON_TYPE;
     
     @property({ attribute: false }) 
-    private accessor language: string = 'en';
+    private accessor language: string = '';
     
     @property({ attribute: false }) 
     private accessor entity: string = '';
@@ -125,10 +125,17 @@ export class TSMoonCard extends LitElement {
         return p_timeFormat === '12h' ? 'h:mm A' : 'HH:mm';
     }
 
+    private formatMoonTime(date: Date | number | null | undefined, format: string): string {
+        // getMoonTimes() returns no rise/set during polar day/night.
+        return date ? dayjs(date).format(format) : '--:--';
+    }
+
 
 
     private getLocale(): string {
-        return this.language ?? this._hass?.locale?.language ?? 'en'
+        // Explicit `language:` in the card config wins; otherwise follow the
+        // Home Assistant UI language (e.g. zh-Hans -> Simplified Chinese).
+        return this.language || this._hass?.locale?.language || 'en'
     }
 
 
@@ -163,11 +170,9 @@ export class TSMoonCard extends LitElement {
         return {
             type: 'custom:tsmoon-card',
             entity: 'sensor.moon',
-            title: 'Lune',
             icon_type: 'forms',
             time_format: '24h',
-            hemisphere: 'N',
-            language: 'fr'
+            hemisphere: 'N'
         };
     }
 
@@ -200,7 +205,7 @@ export class TSMoonCard extends LitElement {
         this.entity = config.entity ?? this.entity;
         this.cardTitle = config.title ?? this.cardTitle;
         this.icon_type = config.icon_type ?? DEFAULT_ICON_TYPE;
-        this.language = config.language ?? 'fr';
+        this.language = config.language ?? '';
         this.time_format = config.time_format ?? '24h';
         this.hemisphere = config.hemisphere ?? 'N';
     }
@@ -271,8 +276,8 @@ export class TSMoonCard extends LitElement {
 
             const timeFormat = this.getTimeFormat(this.time_format);
 
-            this.moonRise = dayjs(moonTimes.rise).format(timeFormat);
-            this.moonSet = dayjs(moonTimes.set).format(timeFormat);
+            this.moonRise = this.formatMoonTime(moonTimes.rise, timeFormat);
+            this.moonSet = this.formatMoonTime(moonTimes.set, timeFormat);
 
         } catch (error) {
             console.error(
@@ -313,9 +318,13 @@ export class TSMoonCard extends LitElement {
         return html`
         
         <ha-card>
-            <div class="card-header">
-                <div class="truncate">${this.cardTitle}</div>
-            </div>
+            ${this.cardTitle
+                ? html`
+                    <div class="card-header">
+                        <div class="truncate">${this.cardTitle}</div>
+                    </div>
+                `
+                : ''}
             <div class="card-content">
                 <div class="entity-row">
                     ${this.renderIcon(this.moonIcon, this.hemisphere)}

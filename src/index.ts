@@ -4,8 +4,8 @@ import { version, name } from '../package.json';
 
 // Constantes
 const CARD_TYPE = 'tsmoon-card';
-const CARD_NAME = 'Simple Moon Phase Card';
-const CARD_DESCRIPTION = 'A card to view Moon Phases';
+const CARD_NAME = 'Simple Moon Phase Card / 月相卡片';
+const CARD_DESCRIPTION = 'A card to view Moon Phases / 显示月相、月出与月落';
 
 // Typage propre pour window
 declare global {
