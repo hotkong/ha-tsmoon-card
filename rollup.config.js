@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import cssImports from 'rollup-plugin-import-css';
 //import template from 'rollup-plugin-html-literals';
-import { terser } from '@rollup/plugin-terser';
+import terser from '@rollup/plugin-terser';
 import image from '@rollup/plugin-image'
 import versionInjector from 'rollup-plugin-version-injector';
 import json from '@rollup/plugin-json';
